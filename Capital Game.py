@@ -74,7 +74,7 @@ def guess():
         elif user_answer.lower() == state_capitals[random_state].lower():
             print("Correct!")
         else:
-            print("Wrong.")
+            print("That is incorrect.")
 
 #call the function to start
 guess()

@@ -15,13 +15,14 @@ rooms = {
     'Dining Room': {
         'west': 'Hall',
         'south': 'Garden',
+        "east": "Office",
         'item': 'potion'
     },
     'Garden': {
         'north': 'Dining Room'
     },
     "Office": {  # ADDED new room
-        "south": "Kitchen",
+        "south": "Hall",
         "item": "gun"  # ADDED new item
     }
 }
@@ -97,7 +98,7 @@ while True:
             # add the item to their inventory
             inventory.append(move[1])
             # display a helpful message
-            print(move[1] + ' got!')
+            print(move[1] + ' retrieved!')
             # delete the item key:value pair from the room's dictionary
             del rooms[currentRoom]['item']
         # if there's no item in the room or the item doesn't match
@@ -108,7 +109,7 @@ while True:
     # If a player enters a room with a monster
     if 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item']:
         # ADDED player has all items to beat the monster
-        if "key" in inventory and "potion" in inventory and "sword" in inventory:
+        if "key" in inventory and "potion" in inventory and "gun" in inventory:
             print("You defeated the monster. You win!")
             break
         else:

@@ -1,3 +1,4 @@
+# Added room, item, way to beat monster, and player ability to quit early
 # A dictionary linking a room to other rooms
 rooms = {
 

@@ -2,13 +2,21 @@ from tkinter import *
 import math
 import PIL.Image
 import PIL.ImageTk
-
+import pygame
+# ___________________________________CONSTANTS___________________________________________#
 work_min = 25
 short_break = 5
 long_break = 15
 reps = 0
 timer = None
+# ______________________________SOUND BITE FUNCTION_____________________________________#
+pygame.mixer.init()
 
+
+def play():
+    pygame.mixer.music.load("quack.mp3")
+    pygame.mixer.music.play(loops=0)
+# __________________________________TIMER AND COUNTDOWN FUNCTION_______________________#
 # create function for resetting the timer
 
 
@@ -40,8 +48,9 @@ def start_timer():
         countdown(short_break * 60)
         title_label.config(text="Break", fg="#a020f0")
 
-
 # function that updates gui timer and continues countdown until it reaches 0
+
+
 def countdown(count):  # function that takes count parameter
     count_min = math.floor(count / 60)
     # math calculation for total minutes and seconds from the total time in seconds
@@ -58,6 +67,7 @@ def countdown(count):  # function that takes count parameter
     else:
         update_check_marks()
         start_timer()
+        play()
 
 
 def update_check_marks():
@@ -73,9 +83,10 @@ def skip_session():
     root.after_cancel(timer)
     update_check_marks()
     start_timer()
+    play()
 
 
-# ________________________________________UI SETUP_________________________________________#
+# ________________________________________UI SETUP_______________________________________#
 root = Tk()
 root.title("PomoDuck")
 root.config(bg="#87ceeb")
@@ -94,9 +105,8 @@ im = PIL.Image.open("microwave-duck.gif")
 duck_img = PIL.ImageTk.PhotoImage(im)
 canvas.create_image(100, 112, image=duck_img)
 timer_text = canvas.create_text(
-    100, 130, text="0:00", fill="#87ceeb", font=("Helvetica", 50, "bold"))
+    100, 130, text="0:00", fill="#87ceeb", font=("Helvetica", 75, "bold"))
 canvas.grid(column=1, row=1, pady=(0, 10))
-
 
 # create and style button
 start_button = Button(text="Start", highlightthickness=1,
